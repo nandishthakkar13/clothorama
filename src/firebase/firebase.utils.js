@@ -8,14 +8,13 @@ import "firebase/firestore";
 /*this is the config object we get from firebase when we setup our project on firebase */
 
 const config = {
-  apiKey: "AIzaSyDneu2qvT9tmMXsYVGfwXQWozF7vk0YkaQ",
-  authDomain: "garment-geeks.firebaseapp.com",
-  databaseURL: "https://garment-geeks.firebaseio.com",
-  projectId: "garment-geeks",
-  storageBucket: "garment-geeks.appspot.com",
-  messagingSenderId: "214030596434",
-  appId: "1:214030596434:web:8db0d5f179f7c13ee0628b",
-  measurementId: "G-WNHN6FV89W",
+  apiKey: "AIzaSyCUj1uBXAJaMlh12pLRFWe8dg7-OiCHHls",
+  authDomain: "clothorama-e4816.firebaseapp.com",
+  projectId: "clothorama-e4816",
+  storageBucket: "clothorama-e4816.appspot.com",
+  messagingSenderId: "471947571567",
+  appId: "1:471947571567:web:b0c3247f24fbce93beb89a",
+  measurementId: "G-0FDVETFJ9X"
 };
 
 //async because we are making an api request
