@@ -58,6 +58,8 @@ class App extends React.Component {
         setCurrentUser(userAuth);
       }
     });
+
+    
   }
 
   /*we want to unsubscribe before we unmount the application */
@@ -94,7 +96,7 @@ class App extends React.Component {
 /*createStructuredSelector -> points the property directly to the selector provided and passes the top level state to it
  */
 const mapStateToProps =  createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

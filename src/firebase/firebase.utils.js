@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+
 /*this is the config object we get from firebase when we setup our project on firebase */
 
 const config = {
@@ -47,6 +48,59 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 };
+
+/*one time used function to add our shop data to firestore */
+export const addCollectionsAndDocuments = async (collectionKey,ObjectToAdd) => {
+
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+
+  ObjectToAdd.forEach(obj => {
+    
+    const newDocRef = collectionRef.doc();
+
+    batch.set(newDocRef,obj);
+
+  });
+
+  //batch.commit returns a promise if its successful it would resolve a void value
+ return await batch.commit();
+
+}
+
+/*this function accepts firestore data and modifies data, so that we can continue to use it in our application */
+export const createCollectionsSnapshotToMap=(collection) =>{
+
+  /*Here we are getting that array of objects from firestore => we updated each object to have the properties we wanted */
+ const transformedCollection= collection.docs.map(doc =>{
+
+    const {title, items} = doc.data();
+
+    return{
+      title,
+      items,
+      id:doc.id,
+      routeName: encodeURI(title.toLowerCase())
+    };
+
+  });
+
+  /*Now we want to convert this array of objects to object of objects so that we can easily navigate and get the data*/
+  /*Objects are easy to fetch data from compared to array */
+
+ return transformedCollection.reduce((accumulator,currentCollection)=>{
+
+    accumulator[currentCollection.title.toLowerCase()] = currentCollection;
+
+    return accumulator;
+
+  },{});
+
+
+}
+
+
 /*understand the code  */
 firebase.initializeApp(config);
 

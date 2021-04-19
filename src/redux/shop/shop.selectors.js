@@ -13,11 +13,11 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections => Object.keys(collections).map(key => collections[key])
+  collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 )
 /*we are getting collectionUrlParam that is which collection did the user clicked on 
 we pass that as a key to our collections object and it pulls out the right collection.
 */
 export const selectCollection = (collectionUrlParam) =>
-  createSelector([selectCollections], (collections) => collections[collectionUrlParam]
+  createSelector([selectCollections], (collections) => collections ? collections[collectionUrlParam] : null
   );
